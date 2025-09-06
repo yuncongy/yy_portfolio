@@ -27,11 +27,14 @@ export function SiteHeader() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/resume" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Resume
-                </NavigationMenuLink>
-              </Link>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Resume
+              </a>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/contact" legacyBehavior passHref>

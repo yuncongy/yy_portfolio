@@ -1,72 +1,120 @@
 "use client";
-import Image from "next/image";
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+type Featured = {
+  title: string;
+  slug: string;
+  summary: string;
+  tags: string[];
+};
+
+const featured: Featured[] = [
+  {
+    title: "TTS Pipeline (Higgs / IndexTTS)",
+    slug: "tts-pipeline",
+    summary:
+      "Large-batch synthetic speech generation with GPU offloading, logs, and offline caches.",
+    tags: ["Python", "PyTorch", "Audio"],
+  },
+  {
+    title: "Lane Detection (Real-Time)",
+    slug: "lane-detection",
+    summary:
+      "CUDA-accelerated lane detection + departure alerts; runs on local RTX 3090.",
+    tags: ["CV", "CUDA", "OpenCV"],
+  },
+  {
+    title: "CFD Playground",
+    slug: "cfd",
+    summary:
+      "Numerical experiments and visualizations from applied math / fluid coursework.",
+    tags: ["C++", "Num Methods", "Viz"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+    <main className="min-h-screen px-6 py-16 flex flex-col items-center">
+      {/* HERO */}
+      <section className="w-full max-w-5xl text-center">
+        <h1 className="text-5xl font-bold tracking-tight">Yuncong Yu</h1>
+        <p className="mt-3 text-2xl text-muted-foreground">
+          Software Engineer · Machine Learning
+        </p>
+        <p className="mt-4 text-muted-foreground">
+          MSCS @ USC · ex-Siemens QA. I build polished SWE systems and ML
+          pipelines for audio and computer vision.
+        </p>
 
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/projects">
+            <Button className="h-12 px-6">View Projects</Button>
+          </Link>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            className="rounded-xl border px-6 py-3 font-medium hover:bg-gray-50"
           >
-            <Image className="dark:invert" src="/vercel.svg" alt="Vercel" width={20} height={20} />
-            Deploy now
+            View Resume
           </a>
-
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-
-          {/* shadcn test button */}
-          <Button className="h-10 sm:h-12 px-4 sm:px-5">Test shadcn Button</Button>
+          <Link href="/contact">
+            <Button variant="secondary" className="h-12 px-6">
+              Contact Me
+            </Button>
+          </Link>
         </div>
-      </main>
+      </section>
 
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        {/* footer links unchanged */}
-        <a className="flex items-center gap-2 hover:underline hover:underline-offset-4" href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          Learn
-        </a>
-        <a className="flex items-center gap-2 hover:underline hover:underline-offset-4" href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Examples
-        </a>
-        <a className="flex items-center gap-2 hover:underline hover:underline-offset-4" href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* FEATURED PROJECTS */}
+      <section className="w-full max-w-5xl mt-16">
+        <div className="flex items-baseline justify-between mb-6">
+          <h2 className="text-2xl font-semibold">Featured Projects</h2>
+          <Link href="/projects" className="text-sm underline">
+            See all →
+          </Link>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/projects/${p.slug}`}
+              className="group"
+            >
+              <article className="h-full rounded-2xl border bg-background p-5 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-sm">
+                {/* image placeholder block (no asset needed) */}
+                <div className="aspect-video w-full rounded-xl bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 mb-4 grid place-items-center text-sm text-muted-foreground">
+                  preview
+                </div>
+
+                <h3 className="text-lg font-semibold group-hover:underline">
+                  {p.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">{p.summary}</p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs rounded-full border px-2 py-1 text-muted-foreground"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Keep your original test button if you like */}
+      <div className="mt-12">
+        <Button className="h-10 px-5">Test shadcn Button</Button>
+      </div>
+    </main>
   );
 }
