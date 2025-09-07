@@ -1,42 +1,264 @@
-// src/app/projects/tts-pipeline/page.tsx
+'use client'
+
+// Drop this file at: src/app/projects/tts-pipeline/page.tsx
+// No external deps required (no recharts / no icon libs). Uses Tailwind + inline SVG only.
+// Replace placeholder files under /public/projects/tts-pipeline/ before publishing.
+
 export default function TTSPipelinePage() {
-  return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold">High-Performance TTS Data Generation Pipeline</h1>
-      <p className="mt-2 text-gray-600">
-        Large-scale speech synthesis pipeline with batching & scheduling.
-      </p>
+  // --- Placeholder data for the results chart ---
+  type Point = { label: string; samples: number }
+  const throughputData: Point[] = [
+    { label: '00:00', samples: 0 },
+    { label: '01:00', samples: 120 },
+    { label: '02:00', samples: 260 },
+    { label: '03:00', samples: 420 },
+    { label: '04:00', samples: 610 },
+    { label: '05:00', samples: 820 },
+    { label: '06:00', samples: 1010 },
+    { label: '07:00', samples: 1240 },
+  ]
 
-      {/* Tech tags */}
-      <div className="flex gap-2 mt-4">
-        <span className="px-3 py-1 rounded-full bg-gray-200 text-sm">Python</span>
-        <span className="px-3 py-1 rounded-full bg-gray-200 text-sm">Multiprocessing</span>
-        <span className="px-3 py-1 rounded-full bg-gray-200 text-sm">PyTorch</span>
-      </div>
+  // --- Minimal inline SVG area chart (no libraries) ---
+  function AreaChart({ data }: { data: Point[] }) {
+    const w = 800, h = 240, p = 36
+    const max = Math.max(1, ...data.map(d => d.samples))
+    const step = (w - 2 * p) / Math.max(1, data.length - 1)
+    const xy = (d: Point, i: number) => [p + i * step, h - p - (d.samples / max) * (h - 2 * p)] as const
+    const pts = data.map(xy)
+    const pointsStr = pts.map(([x, y]) => `${x},${y}`).join(' ')
+    const areaPath = `M ${pts[0][0]} ${h - p} L ` +
+      pts.map(([x, y]) => `${x} ${y}`).join(' L ') +
+      ` L ${pts[pts.length - 1][0]} ${h - p} Z`
 
-      {/* Demo media */}
-      <div className="mt-8 space-y-6">
-        <video controls src="/projects/tts-pipeline/demo.mp4" className="w-full rounded-xl" />
-        <audio controls src="/projects/tts-pipeline/demo.mp3" className="w-full" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <img
-            src="/projects/tts-pipeline/demo-1.gif"
-            alt="TTS Pipeline demo 1"
-            className="rounded-xl"
-          />
-          <img
-            src="/projects/tts-pipeline/demo-2.gif"
-            alt="TTS Pipeline demo 2"
-            className="rounded-xl"
-          />
+    return (
+      <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-64">
+        {/* grid */}
+        <g stroke="#e5e7eb">
+          {Array.from({ length: 5 }, (_, i) => (
+            <line key={i} x1={p} x2={w - p} y1={p + (i * (h - 2 * p)) / 4} y2={p + (i * (h - 2 * p)) / 4} />
+          ))}
+        </g>
+        {/* area fill */}
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
+        <path d={areaPath} fill="url(#areaFill)" />
+        {/* line */}
+        <polyline points={pointsStr} fill="none" stroke="#0ea5e9" strokeWidth={2} />
+        {/* axes */}
+        <g stroke="#94a3b8">
+          <line x1={p} y1={h - p} x2={w - p} y2={h - p} />
+          <line x1={p} y1={p} x2={p} y2={h - p} />
+        </g>
+        {/* labels (x) */}
+        <g fontSize={10} fill="#64748b">
+          {data.map((d, i) => (
+            <text key={i} x={p + i * step} y={h - p + 14} textAnchor="middle">{d.label}</text>
+          ))}
+        </g>
+      </svg>
+    )
+  }
+
+  const TechBadge = ({ children }: { children: React.ReactNode }) => (
+    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs border">{children}</span>
+  )
+
+  const Stat = ({ label, value }: { label: string; value: string }) => (
+    <div className="rounded-2xl p-4 bg-slate-50 border shadow-sm">
+      <div className="text-2xl font-bold">{value}</div>
+      <div className="text-xs text-slate-500 mt-1">{label}</div>
+    </div>
+  )
+
+  const FileCard = ({ title, href, small }: { title: string; href: string; small?: boolean }) => (
+    <a href={href} className={`group flex items-center justify-between gap-3 p-4 rounded-xl border bg-white shadow-sm hover:shadow-md transition ${small ? 'text-sm' : ''}`} download>
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-slate-100 text-slate-700">
+          {/* simple inline icon */}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <div>
+          <div className="font-medium text-slate-900">{title}</div>
+          <div className="text-[11px] text-slate-500">/public{href}</div>
         </div>
       </div>
+      <span className="text-slate-500 group-hover:text-slate-900">Download</span>
+    </a>
+  )
 
-      {/* Highlights */}
-      <ul className="mt-8 list-disc list-inside space-y-2 text-gray-700">
-        <li>Reduced generation time ~40% via multiprocessing</li>
-        <li>Generated 250k+ samples for training</li>
-      </ul>
-    </div>
-  );
+  return (
+    <main className="container mx-auto px-4 md:px-8 py-10 space-y-10">
+      {/* Hero */}
+      <section className="rounded-3xl border shadow-sm bg-white overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-0">
+          <div className="p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+              {/* wave icon */}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+              Offline‑First TTS Generation
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold mt-4">Large-Scale TTS Pipeline for Synthetic Audio</h1>
+            <p className="mt-3 text-slate-600">GPU‑accelerated, multiprocessing pipeline for high‑throughput speech synthesis. Designed for reproducibility, offline operation, and robust logging.</p>
+
+            {/* CTAs (no external icons) */}
+            <div className="flex flex-wrap gap-3 mt-6">
+              <a href="#files" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-black">
+                <span>⬇</span> Download Demo
+              </a>
+              <a href="https://github.com/your/repo" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border bg-white hover:bg-slate-50">
+                <span>↗</span> View Code
+              </a>
+            </div>
+
+            {/* Quick stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+              <Stat label="Total Samples (run)" value="41,000+" />
+              <Stat label="GPUs" value="8× RTX 3090" />
+              <Stat label="Avg. time / 5 samples" value="~8s" />
+              <Stat label="Failure rate" value="< 0.5%" />
+            </div>
+          </div>
+
+          {/* Media preview */}
+          <div className="p-6 bg-slate-50 flex flex-col gap-4 justify-center">
+            <div className="rounded-2xl overflow-hidden border bg-white">
+              <img src="/projects/tts-pipeline/pipeline-preview.gif" alt="Pipeline preview" className="w-full h-48 object-cover" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {['/projects/tts-pipeline/sample-1.wav','/projects/tts-pipeline/sample-2.wav','/projects/tts-pipeline/sample-3.wav'].map((src, i) => (
+                <div key={src} className="p-3 rounded-xl border bg-white">
+                  <div className="flex items-center gap-2 text-sm font-medium mb-2">▶ Sample {i+1}</div>
+                  <audio controls className="w-full"><source src={src} type="audio/wav" /></audio>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technologies */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Technologies Used</h2>
+        <div className="flex flex-wrap gap-2">
+          {[ 'Python','PyTorch','Multiprocessing','CUDA','Hugging Face (offline cache)','TSV / CSV I/O','tqdm'].map(t => (
+            <TechBadge key={t}>{t}</TechBadge>
+          ))}
+        </div>
+      </section>
+
+      {/* Problem & Motivation */}
+      <section className="grid md:grid-cols-2 gap-6">
+        <div className="rounded-2xl border p-6 bg-white shadow-sm">
+          <h3 className="font-semibold text-lg">Problem & Motivation</h3>
+          <p className="mt-2 text-slate-600">Generating large volumes of high‑quality speech is slow, expensive, and hard to reproduce at scale. This project builds a robust, offline‑first pipeline capable of synthesizing tens of thousands of samples while keeping GPU utilization high and logs auditable.</p>
+        </div>
+        <div className="rounded-2xl border p-6 bg-white shadow-sm">
+          <h3 className="font-semibold text-lg">Where It’s Useful</h3>
+          <ul className="mt-2 space-y-1 text-slate-600 list-disc list-inside">
+            <li>Dataset creation & augmentation</li>
+            <li>Voice cloning and style‑conditioned synthesis</li>
+            <li>Evaluation of deepfake detection on non‑speech sounds</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Pipeline Diagram */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Pipeline Diagram</h2>
+        <div className="rounded-2xl overflow-hidden shadow-lg border">
+          <iframe src="/diagrams/tts-pipeline.html" title="TTS Pipeline Diagram" className="w-full h-[520px]" loading="lazy" />
+        </div>
+      </section>
+
+      {/* Technical highlights */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Technical Highlights</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            { title: 'Offline‑first execution', desc: 'Models and tokenizers from local HF cache; deterministic runs; no external API.' },
+            { title: 'Multiprocessing at scale', desc: 'Workers load models once; shared queues; back‑pressure; graceful failure + retries.' },
+            { title: 'GPU device affinity', desc: 'CUDA device pinning via env; per‑worker memory control.' },
+            { title: 'TSV/CSV‑driven batches', desc: 'Ref text/audio + target text; per‑sample metadata.' },
+            { title: 'Robust logging', desc: 'Per‑sample CSV log, tqdm live progress, aggregate stats and error reports.' },
+            { title: 'Post‑processing to WAV', desc: 'Audio‑ID stitching, normalization, optional filters, consistent filenames.' },
+          ].map((c) => (
+            <div key={c.title} className="rounded-2xl border p-5 bg-white shadow-sm">
+              <div className="font-semibold">{c.title}</div>
+              <p className="text-sm text-slate-600 mt-1">{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Results chart (no deps) */}
+      <section>
+        <div className="flex items-center gap-2 mb-4">
+          <h2 className="text-xl font-bold">Results (Throughput Example)</h2>
+        </div>
+        <div className="rounded-2xl border p-4 bg-white shadow-sm">
+          <AreaChart data={throughputData} />
+          <p className="text-xs text-slate-500 mt-2">Placeholder metrics. Replace with your run’s CSV aggregates (samples/hour, avg latency, failure rate).</p>
+        </div>
+      </section>
+
+      {/* Files & Artifacts */}
+      <section id="files">
+        <h2 className="text-xl font-bold mb-4">Files & Artifacts</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <FileCard title="Demo Dataset (ZIP)" href="/projects/tts-pipeline/demo-dataset.zip" />
+          <FileCard title="Run Log (CSV)" href="/projects/tts-pipeline/run_log.csv" />
+          <FileCard title="Summary Metrics (CSV)" href="/projects/tts-pipeline/summary_metrics.csv" />
+          <FileCard title="Error Report (CSV)" href="/projects/tts-pipeline/error_report.csv" />
+          <FileCard title="Config (YAML)" href="/projects/tts-pipeline/config.yaml" />
+          <FileCard title="Analysis Notebook (ipynb)" href="/projects/tts-pipeline/analysis.ipynb" />
+        </div>
+      </section>
+
+      {/* Sample table */}
+      <section>
+        <h2 className="text-xl font-bold mb-3">Sample Records</h2>
+        <div className="rounded-2xl overflow-hidden border shadow-sm">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-50 text-slate-600">
+              <tr>
+                <th className="text-left p-3">sample_id</th>
+                <th className="text-left p-3">text</th>
+                <th className="text-left p-3">ref_audio</th>
+                <th className="text-left p-3">status</th>
+                <th className="text-left p-3">latency_ms</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { id: 'cv_en_39586712', text: 'The quick brown fox…', ref: 'speaker_12.wav', status: 'ok', lat: 712 },
+                { id: 'cv_en_40953339', text: 'Hello from the pipeline…', ref: 'speaker_02.wav', status: 'ok', lat: 689 },
+                { id: 'cv_en_39586770', text: 'KV cache edge case…', ref: 'speaker_45.wav', status: 'skipped', lat: 0 },
+              ].map((r) => (
+                <tr key={r.id} className="border-t">
+                  <td className="p-3 font-mono text-xs">{r.id}</td>
+                  <td className="p-3 truncate max-w-[260px]">{r.text}</td>
+                  <td className="p-3">{r.ref}</td>
+                  <td className="p-3"><span className={`px-2 py-0.5 rounded-full text-xs border ${r.status==='ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>{r.status}</span></td>
+                  <td className="p-3">{r.lat}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 mt-2">Replace with live data or hydrate from a JSON/CSV API route.</p>
+      </section>
+
+      <section className="text-xs text-slate-500">
+        <p>This page showcases system design, scale, and engineering details recruiters care about. Audio clips and files above are placeholders—swap in your real artifacts when ready.</p>
+      </section>
+    </main>
+  )
 }

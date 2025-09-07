@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS Pipeline Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1500px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #414c57;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .pipeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .main-flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .process-box {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: 100px;
+            width: 150px;
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .process-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .process-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .process-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .arrow {
+            width: 15px;
+            height: 2px;
+            background: #6c7a89;
+            position: relative;
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #6c7a89;
+        }
+        .monitoring-box {
+            background:  linear-gradient(135deg, #78909c, #1b2327);
+            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Color Scheme - shades of blue-gray */
+        .color1 { background: linear-gradient(135deg, #78909c, #607d8b); }
+        .color2 { background: linear-gradient(135deg, #607d8b, #546e7a); }
+        .color3 { background: linear-gradient(135deg, #546e7a, #455a64); }
+        .color4 { background: linear-gradient(135deg, #455a64, #37474f); }
+        .color5 { background: linear-gradient(135deg, #37474f, #263238); }
+        .color6 { background: linear-gradient(135deg, #263238, #1b2327); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TTS Generation Pipeline</h1>
+        
+        <div class="pipeline">
+            <div class="main-flow">
+                <div class="process-box color1">
+                    <div class="process-title">Data Ingestion</div>
+                    <div class="process-desc">TSV/CSV with text + optional reference audio/text</div>
+                </div>
+                <div class="arrow"></div>
+                <div class="process-box color2">
+                    <div class="process-title">Data Preprocessing</div>
+                    <div class="process-desc">Input Validation and Sanitization</div>
+                </div>
+                <div class="arrow"></div>
+                <div class="process-box color3">
+                    <div class="process-title">Task Scheduling</div>
+                    <div class="process-desc">Batch and Sample Management</div>
+                </div>
+                <div class="arrow"></div>
+                <div class="process-box color4">
+                    <div class="process-title">Inference Engine</div>
+                    <div class="process-desc">GPU-Accelerated Model Execution</div>
+                </div>
+                <div class="arrow"></div>
+                <div class="process-box color5">
+                    <div class="process-title">Output Post-processing</div>
+                    <div class="process-desc">Audio ID stitching → WAV; filters; normalization</div>
+                </div>
+                <div class="arrow"></div>
+                <div class="process-box color6">
+                    <div class="process-title">Output Generation</div>
+                    <div class="process-desc">WAV Files and Reporting</div>
+                </div>
+            </div>
+            
+            <div class="monitoring-box">
+                <div class="process-title">Monitoring & Logging</div>
+                <div class="process-desc">Live tqdm, Per-sample CSV, Aggregate Metrics (throughput, failures, GPU util)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
