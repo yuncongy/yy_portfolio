@@ -37,28 +37,63 @@ export default function Page() {
       {/* Media section (videos or GIFs) */}
       <section>
         <h2 className="text-xl font-semibold mb-2">Demonstrations</h2>
-        <p className="text-muted-foreground mb-4">
-          Below are sample videos and GIFs showcasing ATS test cases in action. 
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Below are sample GIFs showcasing ATS test cases in action.
         </p>
-        <div className="grid grid-cols-1 gap-4">
-          {/* Example GIF/video slots */}
-          <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500">Video / GIF 1</span>
-          </div>
-            <p className="text-muted-foreground mb-4">
-          Below are sample videos and GIFs showcasing ATS test cases in action. 
-            </p>
-          <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500">Video / GIF 2</span>
-          </div>
-            <p className="text-muted-foreground mb-4">
-            Below are sample videos and GIFs showcasing ATS test cases in action. 
-            </p>
-          <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500">Video / GIF 3</span>
-          </div>
+
+        <div className="space-y-10">
+          {/* Demo 1 */}
+          <figure>
+            <figcaption className="mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+              Checking <strong>five display modes</strong> while the model is rotating.<br />
+              Left side shows the real assembly, right side displays the mirrored assembly being tested.<br />
+              We are verifying that the mirrored assembly renders correctly across modes.<br />
+              <em>Test starts at 0:18</em>
+            </figcaption>
+            <div className="rounded-xl overflow-hidden border bg-gray-50 dark:bg-gray-900">
+              <video
+                src="/projects/nx-ats/nx-ats-demo1.mkv"
+                controls
+                className="w-full h-full object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </figure>
+
+
+          {/* Demo 2 */}
+          <figure>
+            <figcaption className="mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+              Switching from <strong>Wireframe → Shaded → Shaded with Edges</strong> display modes,<br />
+              while ensuring that all HD3D tags remain visible and correctly placed.
+            </figcaption>
+            <div className="rounded-xl overflow-hidden border bg-gray-50 dark:bg-gray-900">
+              <img
+                src="/projects/nx-ats/nx-ats-demo2.gif"
+                alt="ATS Demo 2 — display mode transitions with HD3D tags"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </figure>
+
+          {/* Demo 3 */}
+          <figure>
+            <figcaption className="mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+              Verifying <strong>HD3D tag placement</strong> consistency while rotating the assembly,<br />
+              ensuring accurate positioning regardless of viewing angle.
+            </figcaption>
+            <div className="rounded-xl overflow-hidden border bg-gray-50 dark:bg-gray-900">
+              <img
+                src="/projects/nx-ats/nx-ats-demo3.gif"
+                alt="ATS Demo 3 — HD3D tag placement verification"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </figure>
         </div>
       </section>
+
 
       {/* Key highlights */}
       <section>
@@ -75,17 +110,19 @@ export default function Page() {
         <section>
         <h2 className="text-xl font-semibold mb-2">Results & Impact</h2>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>Developed <strong>15 interactive</strong> test cases and <strong>17 fully automated</strong> test cases, expanding regression coverage across critical NX modules</li>
+            <li>Developed <strong>15 interactive</strong> and <strong>17 fully automated</strong> test cases, expanding coverage across critical NX modules</li>
             <li>Helped reduce manual QA effort by enabling repeatable, automation-driven validation workflows</li>
-            <li>ATS test cases were <strong>showcased to Siemens NX customers</strong>, demonstrating product reliability and innovation</li>
-            <li>Improved early bug detection, shortening feedback loops for development teams across multiple release cycles</li>
+            <li>ATS test cases were <strong>showcased to Siemens NX customers</strong>, demonstrating product capabilities</li>
+            <li>Improved early bug detection, shortening feedback loops for dev teams across multiple releases</li>
         </ul>
         </section>
 
+      {/* Divider */}
+      <hr className="my-6 border-t border-gray-300 dark:border-gray-700" />
 
       {/* Closing note */}
       <p className="text-muted-foreground">
-        While specific implementation details remain internal to Siemens, this project 
+        While specific implementation details remain internal to Siemens DISW, this project 
         highlights my ability to work on large-scale enterprise QA infrastructure and 
         deliver practical automation solutions.
       </p>
