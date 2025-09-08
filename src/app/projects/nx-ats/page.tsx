@@ -38,7 +38,7 @@ export default function Page() {
       <section>
         <h2 className="text-xl font-semibold mb-2">Demonstrations</h2>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
-          Below are sample GIFs showcasing ATS test cases in action.
+          Below are samples showcasing ATS test cases in action.
         </p>
 
         <div className="space-y-10">

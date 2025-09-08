@@ -22,8 +22,8 @@ const featured: Featured[] = [
     title: "Siemens NX Automated Testing Studio",
     slug: "nx-ats",
     summary:
-      "blablabla",
-    tags: ["CV", "CUDA", "OpenCV"],
+      "NX QA Automation Test Cases",
+    tags: ["Python", "NXOpen", "QA Automation"],
   },
   {
     title: "CFD Playground",
