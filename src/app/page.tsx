@@ -12,17 +12,17 @@ type Featured = {
 
 const featured: Featured[] = [
   {
-    title: "TTS Pipeline (Higgs / IndexTTS)",
+    title: "TTS Generation Pipeline",
     slug: "tts-pipeline",
     summary:
       "Large-batch synthetic speech generation with GPU offloading, logs, and offline caches.",
-    tags: ["Python", "PyTorch", "Audio"],
+    tags: ["Python", "PyTorch", "Torchaudio"],
   },
   {
-    title: "Lane Detection (Real-Time)",
-    slug: "lane-detection",
+    title: "Siemens NX Automated Testing Studio",
+    slug: "nx-ats",
     summary:
-      "CUDA-accelerated lane detection + departure alerts; runs on local RTX 3090.",
+      "blablabla",
     tags: ["CV", "CUDA", "OpenCV"],
   },
   {

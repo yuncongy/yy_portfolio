@@ -18,6 +18,33 @@ export default function TTSPipelinePage() {
     { label: '07:00', samples: 1240 },
   ]
 
+  // --- Code showcase strings (no external deps) ---
+  const engineCode = `# core/engine.py
+from typing import Protocol, Optional
+
+class TTSEngine(Protocol):
+    def load(self) -> None: ...
+    def generate(self, text: str,
+                 ref_audio: Optional[str] = None,
+                 ref_text: Optional[str] = None,
+                 **kw) -> bytes:
+        ...
+`;
+
+  const runnerCode = `# runners/run_batch.py
+from pathlib import Path
+
+def run_batch(engine: TTSEngine, rows, out_dir: Path):
+    engine.load()
+    for r in rows:  # rows from TSV/CSV
+        try:
+            wav = engine.generate(r.text, r.ref_audio, r.ref_text, **getattr(r, 'kw', {}))
+            write_wav(out_dir / f'{r.id}.wav', wav)
+            log_ok(r.id)
+        except Exception as e:
+            log_fail(r.id, str(e))
+`;
+
   // --- Minimal inline SVG area chart (no libraries) ---
   function AreaChart({ data }: { data: Point[] }) {
     const w = 800, h = 240, p = 36
@@ -103,9 +130,9 @@ export default function TTSPipelinePage() {
             <div className="inline-flex items-center gap-2 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
               {/* wave icon */}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
-              Offline‑First TTS Generation
+              Offline‑Multi‑Model TTS Generation
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold mt-4">Large-Scale TTS Pipeline for Synthetic Audio</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mt-4">Offline Multi‑Model TTS Generation Pipeline</h1>
             <p className="mt-3 text-slate-600">GPU‑accelerated, multiprocessing pipeline for high‑throughput speech synthesis. Designed for reproducibility, offline operation, and robust logging.</p>
 
             {/* CTAs (no external icons) */}
@@ -125,6 +152,9 @@ export default function TTSPipelinePage() {
               <Stat label="Avg. time / 5 samples" value="~8s" />
               <Stat label="Failure rate" value="< 0.5%" />
             </div>
+            <p className="mt-4 text-xs text-slate-500">
+              <span className="font-semibold">Scope:</span> integration of multiple open‑source TTS models for offline, high‑throughput inference; focus on orchestration, batching, logging, and GPU utilization. Models are third‑party.
+            </p>
           </div>
 
           {/* Media preview */}
@@ -148,10 +178,31 @@ export default function TTSPipelinePage() {
       <section>
         <h2 className="text-xl font-bold mb-4">Technologies Used</h2>
         <div className="flex flex-wrap gap-2">
-          {[ 'Python','PyTorch','Multiprocessing','CUDA','Hugging Face (offline cache)','TSV / CSV I/O','tqdm'].map(t => (
+          {[ 'Python','PyTorch','Multiprocessing','CUDA','Hugging Face (offline cache)','TSV/CSV I/O','tqdm','BigVGAN / Higgs Audio 3B' ].map(t => (
             <TechBadge key={t}>{t}</TechBadge>
           ))}
         </div>
+      </section>
+
+      {/* Supported Backends */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Supported Backends</h2>
+        <p className="text-sm text-slate-600 mb-3">Each backend uses a small adapter that conforms to a common <span className='font-mono'>TTSEngine</span> interface; choose per job.</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {[
+            {name:'IndexTTS', desc:'cloning/style; ref text + ref audio'},
+            {name:'Chatterbox', desc:'dialogue synthesis; multi‑turn'},
+            {name:'Dia', desc:'style‑conditioned generation'},
+            {name:'CSM‑1B', desc:'compact model; faster batches'},
+            {name:'Kokoro', desc:'lightweight; quick previews'},
+          ].map(b => (
+            <div key={b.name} className="rounded-xl border p-4 bg-white shadow-sm">
+              <div className="font-semibold">{b.name}</div>
+              <div className="text-xs text-slate-600 mt-1">{b.desc}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-slate-500 mt-2">Models are third‑party; this project focuses on orchestration & batch generation.</p>
       </section>
 
       {/* Problem & Motivation */}
@@ -185,8 +236,8 @@ export default function TTSPipelinePage() {
           {[
             { title: 'Offline‑first execution', desc: 'Models and tokenizers from local HF cache; deterministic runs; no external API.' },
             { title: 'Multiprocessing at scale', desc: 'Workers load models once; shared queues; back‑pressure; graceful failure + retries.' },
-            { title: 'GPU device affinity', desc: 'CUDA device pinning via env; per‑worker memory control.' },
-            { title: 'TSV/CSV‑driven batches', desc: 'Ref text/audio + target text; per‑sample metadata.' },
+            { title: 'GPU device affinity', desc: 'CUDA device pinning via env; per‑worker memory control; safe KV‑cache handling.' },
+            { title: 'TSV/CSV‑driven batches', desc: 'Ref text/audio + target text; per‑sample metadata; idempotent resume.' },
             { title: 'Robust logging', desc: 'Per‑sample CSV log, tqdm live progress, aggregate stats and error reports.' },
             { title: 'Post‑processing to WAV', desc: 'Audio‑ID stitching, normalization, optional filters, consistent filenames.' },
           ].map((c) => (
@@ -195,6 +246,35 @@ export default function TTSPipelinePage() {
               <p className="text-sm text-slate-600 mt-1">{c.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Code Showcase */}
+      <section>
+        <h2 className="text-xl font-bold mb-2">Code Showcase (Interface + Runner)</h2>
+        <p className="text-slate-600 text-sm mb-3">Each backend implements the <span className='font-mono'>TTSEngine</span> interface; the model‑agnostic runner handles TSV ingestion, multiprocessing workers, logging, and output.</p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="rounded-2xl border bg-white shadow-sm p-4">
+            <div className="text-sm font-semibold mb-2">core/engine.py</div>
+            <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto"><code>{engineCode}</code></pre>
+          </div>
+          <div className="rounded-2xl border bg-white shadow-sm p-4">
+            <div className="text-sm font-semibold mb-2">runners/run_batch.py</div>
+            <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto"><code>{runnerCode}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Try (No Weights) */}
+      <section>
+        <h2 className="text-xl font-bold mb-2">Quick Try (No Model Weights)</h2>
+        <div className="rounded-2xl border bg-white shadow-sm p-4">
+          <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li><span className="font-mono">--dry-run</span>: validates TSV, shows batching/logging without model inference.</li>
+            <li><span className="font-mono">replay.py</span>: renders pre‑generated WAVs using the same TSV to demonstrate I/O + logging.</li>
+          </ul>
+          <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto mt-3"><code>{`python run_batch.py --engine kokoro --tsv demo.tsv --out out/ --dry-run
+python replay.py --tsv demo.tsv --wavs demo_wavs/ --out out/`}</code></pre>
         </div>
       </section>
 

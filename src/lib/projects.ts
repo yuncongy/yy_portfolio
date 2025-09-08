@@ -37,9 +37,20 @@ export const projects: Project[] = [
   {
     slug: "ml-core-from-scratch",
     title: "Core ML Algorithms — From Scratch",
-    tech: ["Python", "NumPy"],
-    summary: "CNN, HMM, K-means, Transformer, Q-Learning, PCA implementations.",
+    tech: ["Python", "NumPy","Pandas", "Matplotlib", "Scikit-learn", "Reinforcement Learning"],
+    summary: "Transformer, CNN, Hidden Markov-Model, K-means, Q-Learning, PCA, Decision Tree, Classification implementations.",
     year: "2024–2025",
+  },
+  {
+  slug: "nx-ats",
+  title: "Siemens NX Automated Testing Studio (ATS)",
+  tech: ["Python", "NX Open", "HTML", "QA Automation"],
+  summary: "Built interactive and automated test cases to expand Siemens NX QA coverage and reduce manual testing effort.",
+  highlights: [
+    "15 interactive + 17 fully automated ATS test cases across multiple NX modules",
+    "Showcased ATS workflows to Siemens NX customers",
+  ],
+  year: "2021–2023",
   },
   {
     slug: "cfd-auditorium",
