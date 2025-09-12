@@ -1,6 +1,5 @@
 'use client'
 
-// Drop this file at: src/app/projects/tts-pipeline/page.tsx
 // No external deps required (no recharts / no icon libs). Uses Tailwind + inline SVG only.
 // Replace placeholder files under /public/projects/tts-pipeline/ before publishing.
 
@@ -125,7 +124,7 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
     <main className="container mx-auto px-4 md:px-8 py-10 space-y-10">
       {/* Hero */}
       <section className="rounded-3xl border shadow-sm bg-white overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-0">
+        <div className="grid grid-cols-1">
           <div className="p-8 md:p-10">
             <div className="inline-flex items-center gap-2 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
               {/* wave icon */}
@@ -140,37 +139,50 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
               <a href="#files" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-black">
                 <span>⬇</span> Download Demo
               </a>
-              <a href="https://github.com/your/repo" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border bg-white hover:bg-slate-50">
+              <a href="https://github.com/yuncongy/tts_apps/tree/main/TTS_Generation" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border bg-white hover:bg-slate-50">
                 <span>↗</span> View Code
               </a>
             </div>
 
             {/* Quick stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-              <Stat label="Total Samples (run)" value="41,000+" />
-              <Stat label="GPUs" value="8× RTX 3090" />
-              <Stat label="Avg. time / 5 samples" value="~8s" />
-              <Stat label="Failure rate" value="< 0.5%" />
+              <Stat label="Total Samples (run)" value="250,000+" />
+              <Stat label="GPUs" value="8× RTX 4090" />
+              <Stat label="Models Integrated" value="8 And Counting" />
+              <Stat label="Dataset Size" value="100 GB+" />
             </div>
             <p className="mt-4 text-xs text-slate-500">
               <span className="font-semibold">Scope:</span> integration of multiple open‑source TTS models for offline, high‑throughput inference; focus on orchestration, batching, logging, and GPU utilization. Models are third‑party.
             </p>
           </div>
 
-          {/* Media preview */}
-          <div className="p-6 bg-slate-50 flex flex-col gap-4 justify-center">
-            <div className="rounded-2xl overflow-hidden border bg-white">
-              <img src="/projects/tts-pipeline/pipeline-preview.gif" alt="Pipeline preview" className="w-full h-48 object-cover" />
+        </div>
+      </section>
+
+      {/* Pipeline Overview */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Pipeline Overview</h2>
+        <div className="rounded-2xl overflow-hidden border bg-white shadow-sm">
+          <img
+            src="/projects/tts-pipeline/pipeline-preview.gif"
+            alt="Pipeline overview"
+            className="w-full h-80 object-cover"
+          />
+        </div>
+      </section>
+
+      {/* Audio Samples */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Audio Samples</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {['/projects/tts-pipeline/sample-1.wav','/projects/tts-pipeline/sample-2.wav','/projects/tts-pipeline/sample-3.wav'].map((src, i) => (
+            <div key={src} className="p-4 rounded-xl border bg-white shadow-sm">
+              <div className="flex items-center gap-2 text-sm font-medium mb-2">▶ Sample {i+1}</div>
+              <audio controls className="w-full">
+                <source src={src} type="audio/wav" />
+              </audio>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {['/projects/tts-pipeline/sample-1.wav','/projects/tts-pipeline/sample-2.wav','/projects/tts-pipeline/sample-3.wav'].map((src, i) => (
-                <div key={src} className="p-3 rounded-xl border bg-white">
-                  <div className="flex items-center gap-2 text-sm font-medium mb-2">▶ Sample {i+1}</div>
-                  <audio controls className="w-full"><source src={src} type="audio/wav" /></audio>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -186,8 +198,8 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
 
       {/* Supported Backends */}
       <section>
-        <h2 className="text-xl font-bold mb-4">Supported Backends</h2>
-        <p className="text-sm text-slate-600 mb-3">Each backend uses a small adapter that conforms to a common <span className='font-mono'>TTSEngine</span> interface; choose per job.</p>
+        <h2 className="text-xl font-bold mb-4">Supported Models</h2>
+        <p className="text-sm text-slate-600 mb-3">Each script create a new TTS Model Generator. </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {[
             {name:'IndexTTS', desc:'cloning/style; ref text + ref audio'},
@@ -246,46 +258,6 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
               <p className="text-sm text-slate-600 mt-1">{c.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Code Showcase */}
-      <section>
-        <h2 className="text-xl font-bold mb-2">Code Showcase (Interface + Runner)</h2>
-        <p className="text-slate-600 text-sm mb-3">Each backend implements the <span className='font-mono'>TTSEngine</span> interface; the model‑agnostic runner handles TSV ingestion, multiprocessing workers, logging, and output.</p>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="rounded-2xl border bg-white shadow-sm p-4">
-            <div className="text-sm font-semibold mb-2">core/engine.py</div>
-            <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto"><code>{engineCode}</code></pre>
-          </div>
-          <div className="rounded-2xl border bg-white shadow-sm p-4">
-            <div className="text-sm font-semibold mb-2">runners/run_batch.py</div>
-            <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto"><code>{runnerCode}</code></pre>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Try (No Weights) */}
-      <section>
-        <h2 className="text-xl font-bold mb-2">Quick Try (No Model Weights)</h2>
-        <div className="rounded-2xl border bg-white shadow-sm p-4">
-          <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-            <li><span className="font-mono">--dry-run</span>: validates TSV, shows batching/logging without model inference.</li>
-            <li><span className="font-mono">replay.py</span>: renders pre‑generated WAVs using the same TSV to demonstrate I/O + logging.</li>
-          </ul>
-          <pre className="text-xs bg-slate-50 p-3 rounded-lg overflow-x-auto mt-3"><code>{`python run_batch.py --engine kokoro --tsv demo.tsv --out out/ --dry-run
-python replay.py --tsv demo.tsv --wavs demo_wavs/ --out out/`}</code></pre>
-        </div>
-      </section>
-
-      {/* Results chart (no deps) */}
-      <section>
-        <div className="flex items-center gap-2 mb-4">
-          <h2 className="text-xl font-bold">Results (Throughput Example)</h2>
-        </div>
-        <div className="rounded-2xl border p-4 bg-white shadow-sm">
-          <AreaChart data={throughputData} />
-          <p className="text-xs text-slate-500 mt-2">Placeholder metrics. Replace with your run’s CSV aggregates (samples/hour, avg latency, failure rate).</p>
         </div>
       </section>
 
