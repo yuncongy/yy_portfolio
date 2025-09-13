@@ -1,0 +1,21 @@
+prompt_id,text,voice,model
+p1,Children laughing and playing in a park.,female_1,eleven_multilingual_v2
+p2,Car engine revving before a race.,child,eleven_monolingual_v1
+p3,Waves crashing gently on a rocky shoreline.,default,eleven_monolingual_v1
+p4,A dog barking in the distance.,narrator,eleven_multilingual_v2
+p5,A robotic voice reading a news headline.,narrator,eleven_monolingual_v1
+p6,Car engine revving before a race.,child,eleven_turbo_v1
+p7,Soft piano music playing in a quiet room.,female_1,eleven_turbo_v1
+p8,Car engine revving before a race.,child,eleven_multilingual_v2
+p9,Car engine revving before a race.,narrator,eleven_turbo_v1
+p10,Car engine revving before a race.,male_1,eleven_multilingual_v2
+p11,A robotic voice reading a news headline.,male_1,eleven_monolingual_v1
+p12,An announcement in a busy train station.,narrator,eleven_multilingual_v2
+p13,Wind whistling through an empty canyon.,narrator,eleven_multilingual_v2
+p14,A robotic voice reading a news headline.,female_1,eleven_turbo_v1
+p15,Waves crashing gently on a rocky shoreline.,male_1,eleven_monolingual_v1
+p16,Footsteps echoing in a large empty hall.,narrator,eleven_multilingual_v2
+p17,An announcement in a busy train station.,default,eleven_turbo_v1
+p18,Typing sounds on a mechanical keyboard.,male_1,eleven_monolingual_v1
+p19,Children laughing and playing in a park.,female_1,eleven_multilingual_v2
+p20,A crowd cheering in a stadium after a goal.,male_1,eleven_multilingual_v2

@@ -1,0 +1,126 @@
+
+--------------------------------------------------------CSM - 1B Model (3 Workers)---------------------------------------------------------------------
+2025-07-30 20:07:33,893 [INFO] Initialized CSV file: E:\ML\Datasets\cv-corpus\test_audio\output_csm\generation_log.csv
+2025-07-30 20:07:33,900 [INFO] Loaded 11 completed samples from log CSV
+2025-07-30 20:07:33,900 [INFO] Excluded 0 completed records.
+2025-07-30 20:07:33,901 [INFO] Total tasks for audio generation: 11
+2025-07-30 20:07:33,904 [INFO] Total valid tasks after duration filtering: 11
+2025-07-30 20:07:33,904 [INFO] Dataset loaded in 0.01 seconds
+2025-07-30 20:07:39,709 [INFO] Loading CSM-1B TTS model on device: cuda
+2025-07-30 20:07:39,710 [INFO] Loading CSM-1B TTS model on device: cuda
+2025-07-30 20:07:39,710 [INFO] Loading CSM-1B TTS model on device: cuda
+2025-07-30 20:07:53,059 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865211.mp3 and text: "With this transition to the big time, the band shortened their name to Stabilo."
+2025-07-30 20:07:53,060 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865212.mp3 and text: "Local brothels recruited extra staff to cope with the increase in business."
+2025-07-30 20:07:53,064 [INFO] Generating audio for: "Local brothels recruited extra staff to cope with the increase in business."
+."
+2025-07-30 20:07:53,277 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865213.mp3 and text: "With Fox on lead vocals, the threesome did two short tours in Europe."
+2025-07-30 20:07:53,289 [INFO] Generating audio for: "With Fox on lead vocals, the threesome did two short tours in Europe."
+2025-07-30 20:08:17,670 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865211.wav
+2025-07-30 20:08:17,671 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865214.mp3 and text: "Miramax requested cuts be made and Christopher initially refused."
+2025-07-30 20:08:17,718 [INFO] Generating audio for: "Miramax requested cuts be made and Christopher initially refused."
+2025-07-30 20:08:21,231 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865213.wav
+2025-07-30 20:08:21,232 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865215.mp3 and text: "The Key allows customers to buy Plusbus for the Crawley and Brighton areas."
+2025-07-30 20:08:21,292 [INFO] Generating audio for: "The Key allows customers to buy Plusbus for the Crawley and Brighton areas."
+2025-07-30 20:08:27,631 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865212.wav
+2025-07-30 20:08:27,633 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865221.mp3 and text: "In this position he learnt mathematics, Greek, Italian, Spanish and several oriental languages."
+2025-07-30 20:08:27,638 [INFO] Generating audio for: "In this position he learnt mathematics, Greek, Italian, Spanish and several oriental languages."
+2025-07-30 20:08:35,658 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865214.wav
+2025-07-30 20:08:35,660 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865222.mp3 and text: "My books and my stories."
+2025-07-30 20:08:35,664 [INFO] Generating audio for: "My books and my stories."
+2025-07-30 20:08:43,543 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865222.wav
+2025-07-30 20:08:43,543 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865223.mp3 and text: "They followed the streetcar lines to areas south of the Raccoon River."
+2025-07-30 20:08:43,546 [INFO] Generating audio for: "They followed the streetcar lines to areas south of the Raccoon River."
+2025-07-30 20:08:43,995 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865215.wav
+2025-07-30 20:08:43,995 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865224.mp3 and text: "She herself defended her verse as holy erotica."
+2025-07-30 20:08:43,998 [INFO] Generating audio for: "She herself defended her verse as holy erotica."
+2025-07-30 20:08:54,837 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865221.wav
+2025-07-30 20:08:54,837 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40865225.mp3 and text: "In the pamphlet What is to be Done?"
+2025-07-30 20:08:54,839 [INFO] Generating audio for: "In the pamphlet What is to be Done?"
+2025-07-30 20:08:59,950 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865223.wav
+2025-07-30 20:08:59,951 [INFO] Preparing prompt using reference audio: E:\ML\Datasets\cv-corpus\test_audio\audio_samples\common_voice_en_40953339.mp3 and text: "It was just the kind of unexpected thing the Japanese would do."
+2025-07-30 20:08:59,957 [INFO] Generating audio for: "It was just the kind of unexpected thing the Japanese would do."
+2025-07-30 20:09:01,888 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865224.wav
+2025-07-30 20:09:02,782 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40865225.wav
+2025-07-30 20:09:06,754 [INFO] Generated audio saved to: E:\ML\Datasets\cv-corpus\test_audio\output_csm\CSM_generated_40953339.wav
+2025-07-30 20:09:06,885 [INFO] Finished generating 11 samples. Total audio duration: 43.20 seconds
+2025-07-30 20:09:06,885 [INFO] Audio generated in this session: 43.20 seconds
+2025-07-30 20:09:06,885 [INFO] Total generated audio: 43.20 seconds
+2025-07-30 20:09:06,885 [INFO] Time to synthesize 11 samples with 3 workers: 92.98s
+
+
+
+--------------------------------------------------------Dia Model (Batch)---------------------------------------------------------------------
+2025-09-12 16:22:54,104 [INFO] Initialized CSV file: E:\ML\Datasets\cv-corpus\test_audio\output_dia\generation_log.csv
+2025-09-12 16:22:54,112 [INFO] Loaded 11 completed samples from log CSV
+2025-09-12 16:22:54,112 [INFO] Excluded 0 completed records.
+2025-09-12 16:22:54,112 [INFO] Total tasks: 11
+2025-09-12 16:22:54,146 [INFO] Total valid tasks after duration filtering: 11
+2025-09-12 16:22:54,146 [INFO] Dataset loaded in 0.04 seconds
+2025-09-12 16:23:00,766 [INFO] Loading Dia model on device cuda
+2025-09-12 16:23:00,769 [INFO] Generating batch 0 to 2
+2025-09-12 16:23:00,769 [INFO] Batch audio contains ['E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865211.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865212.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865213.mp3']
+2025-09-12 16:23:41,560 [INFO] Generated samples: dia_generated_40865211.mp3
+2025-09-12 16:23:41,589 [INFO] Generated samples: dia_generated_40865212.mp3
+2025-09-12 16:23:41,617 [INFO] Generated samples: dia_generated_40865213.mp3
+2025-09-12 16:23:41,621 [INFO] Saved batch 0 to 2
+2025-09-12 16:23:41,658 [INFO] Generating batch 3 to 5
+2025-09-12 16:23:41,658 [INFO] Batch audio contains ['E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865214.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865215.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865221.mp3']
+2025-09-12 16:24:27,413 [INFO] Generated samples: dia_generated_40865214.mp3
+2025-09-12 16:24:27,445 [INFO] Generated samples: dia_generated_40865215.mp3
+2025-09-12 16:24:27,473 [INFO] Generated samples: dia_generated_40865221.mp3
+2025-09-12 16:24:27,476 [INFO] Saved batch 3 to 5
+2025-09-12 16:24:27,499 [INFO] Generating batch 6 to 8
+2025-09-12 16:24:27,499 [INFO] Batch audio contains ['E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865222.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865223.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865224.mp3']
+2025-09-12 16:25:27,755 [INFO] Generated samples: dia_generated_40865222.mp3
+2025-09-12 16:25:27,783 [INFO] Generated samples: dia_generated_40865223.mp3
+2025-09-12 16:25:27,818 [INFO] Generated samples: dia_generated_40865224.mp3
+2025-09-12 16:25:27,820 [INFO] Saved batch 6 to 8
+2025-09-12 16:25:27,842 [INFO] Generating batch 9 to 10
+2025-09-12 16:25:27,842 [INFO] Batch audio contains ['E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40865225.mp3', 'E:\\ML\\Datasets\\cv-corpus\\test_audio\\audio_samples\\common_voice_en_40953339.mp3']
+2025-09-12 16:26:48,215 [INFO] Generated samples: dia_generated_40865225.mp3
+2025-09-12 16:26:48,251 [INFO] Generated samples: dia_generated_40953339.mp3
+2025-09-12 16:26:48,254 [INFO] Saved batch 9 to 10
+2025-09-12 16:26:48,279 [INFO] Finished generating 11 samples. Total audio duration: 108.79 seconds
+2025-09-12 16:26:48,279 [INFO] Audio generated in this session: 108.79 seconds
+2025-09-12 16:26:48,279 [INFO] Total generated audio: 108.79 seconds
+
+--------------------------------------------------------Chatterbox Model (3 Workers)---------------------------------------------------------------------
+2025-06-19 16:25:13,470 [INFO] Initialized CSV file: E:\ML\Datasets\cv-corpus\test_audio\output_chatterbox\generation_log.csv
+2025-06-19 16:25:13,474 [INFO] Loaded 0 completed samples from log CSV
+2025-06-19 16:25:13,474 [INFO] Excluded 0 completed records.
+2025-06-19 16:25:13,474 [INFO] Total tasks: 10
+2025-06-19 16:25:13,476 [INFO] Total valid tasks after duration filtering: 10
+2025-06-19 16:25:13,476 [INFO] Dataset loaded in 0.01 seconds
+2025-06-19 16:25:22,605 [INFO] input frame rate=25
+2025-06-19 16:25:22,669 [INFO] input frame rate=25
+2025-06-19 16:25:22,715 [INFO] input frame rate=25
+2025-06-19 16:25:23,527 [INFO] Loading ChatterBox TTS model on device: cuda
+2025-06-19 16:25:23,527 [INFO] Running model for audio sample common_voice_en_40865211.mp3 with params: Default:False, exag:0.47, cfg_weight:0.53, temperature:0.53
+2025-06-19 16:25:23,585 [INFO] Loading ChatterBox TTS model on device: cuda
+2025-06-19 16:25:23,585 [INFO] Running model for audio sample common_voice_en_40865212.mp3 with params: Default:False, exag:1.28, cfg_weight:0.47, temperature:0.64
+2025-06-19 16:25:23,585 [INFO] Running model for audio sample common_voice_en_40865213.mp3 with params: Default:False, exag:1.03, cfg_weight:0.54, temperature:0.51
+2025-06-19 16:25:23,586 [INFO] Running model for audio sample common_voice_en_40865214.mp3 with params: Default:False, exag:0.71, cfg_weight:0.35, temperature:0.71
+2025-06-19 16:25:23,773 [INFO] Loading ChatterBox TTS model on device: cuda
+2025-06-19 16:25:23,774 [INFO] Running model for audio sample common_voice_en_40865215.mp3 with params: Default:False, exag:0.6, cfg_weight:0.65, temperature:0.85
+2025-06-19 16:25:24,324 [WARNING] Reference mel length is not equal to 2 * reference token length.
+
+2025-06-19 16:25:24,364 [WARNING] Reference mel length is not equal to 2 * reference token length.
+
+2025-06-19 16:25:31,095 [INFO] Successfully generated audio for common_voice_en_40865214.mp3
+2025-06-19 16:25:31,096 [INFO] Running model for audio sample common_voice_en_40865221.mp3 with params: Default:False, exag:0.98, cfg_weight:0.78, temperature:0.73
+2025-06-19 16:25:31,542 [INFO] Successfully generated audio for common_voice_en_40865211.mp3
+2025-06-19 16:25:31,544 [INFO] Running model for audio sample common_voice_en_40865222.mp3 with params: Default:False, exag:0.96, cfg_weight:0.63, temperature:0.48
+2025-06-19 16:25:31,882 [INFO] Successfully generated audio for common_voice_en_40865215.mp3
+2025-06-19 16:25:31,883 [INFO] Running model for audio sample common_voice_en_40865223.mp3 with params: Default:True, exag:0.5, cfg_weight:0.5, temperature:0.8
+2025-06-19 16:25:36,740 [INFO] Successfully generated audio for common_voice_en_40865222.mp3
+2025-06-19 16:25:36,741 [INFO] Running model for audio sample common_voice_en_40865224.mp3 with params: Default:False, exag:0.42, cfg_weight:0.51, temperature:0.76
+2025-06-19 16:25:36,846 [INFO] Running model for audio sample common_voice_en_40865225.mp3 with params: Default:False, exag:1.02, cfg_weight:0.54, temperature:0.88
+2025-06-19 16:25:36,914 [WARNING] Reference mel length is not equal to 2 * reference token length.
+
+2025-06-19 16:25:38,988 [INFO] Successfully generated audio for common_voice_en_40865221.mp3
+2025-06-19 16:25:39,834 [INFO] Successfully generated audio for common_voice_en_40865225.mp3
+2025-06-19 16:25:41,136 [INFO] Successfully generated audio for common_voice_en_40865224.mp3
+2025-06-19 16:25:51,151 [WARNING] All worker processes terminated unexpectedly.
+2025-06-19 16:25:51,152 [INFO] Finished generating 10 samples. Total audio duration: 35.12 seconds
+2025-06-19 16:25:51,152 [INFO] Time to synthesize 8 samples with 3 workers: 37.68s
+

@@ -147,7 +147,7 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
             {/* Quick stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
               <Stat label="Total Samples (run)" value="250,000+" />
-              <Stat label="GPUs" value="8× RTX 4090" />
+              <Stat label="GPU" value="RTX 4090" />
               <Stat label="Models Integrated" value="8 And Counting" />
               <Stat label="Dataset Size" value="100 GB+" />
             </div>
@@ -159,15 +159,49 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
         </div>
       </section>
 
-      {/* Pipeline Overview */}
+      {/* Pipeline In Action */}
       <section>
-        <h2 className="text-xl font-bold mb-4">Pipeline Overview</h2>
+        <h2 className="text-xl font-bold mb-4">Pipeline In Action</h2>
         <div className="rounded-2xl overflow-hidden border bg-white shadow-sm">
           <img
-            src="/projects/tts-pipeline/pipeline-preview.gif"
+            src="/projects/tts-pipeline/demo_recording1.gif"
             alt="Pipeline overview"
             className="w-full h-80 object-cover"
           />
+        </div>
+      </section>
+
+      {/* ElevenLabs API Integration */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">ElevenLabs API Integration</h2>
+        <div className="rounded-2xl border p-6 bg-white shadow-sm space-y-3">
+          <p className="text-slate-600 text-sm">
+            In addition to offline pipelines, I built a lightweight client around the 
+            <span className="font-semibold"> ElevenLabs API</span> for rapid dataset generation 
+            and sound effect prototyping. This tool lets me batch-generate audio samples from text or CSV 
+            inputs, track metadata in logs, and export results in standard formats.
+          </p>
+          <ul className="list-disc list-inside text-slate-600 text-sm space-y-1">
+            <li>Supports batch input via <code>.csv</code> or <code>.tsv</code></li>
+            <li>Logs generation status (success/failure, filenames, durations)</li>
+            <li>Configurable voice/model settings with simple CLI options</li>
+          </ul>
+          <div className="flex gap-3 mt-4">
+            <a
+              href="https://github.com/yuncongy/tts_apps/tree/main/Elevenlabs_tools/API"
+              target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border bg-white hover:bg-slate-50 text-sm"
+            >
+              <span>↗</span> View ElevenLabs Code
+            </a>
+            <a
+              href="/projects/tts-pipeline/prompts-sample.csv"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-black text-sm"
+              download
+            >
+              <span>⬇</span> Download Sample Prompts
+            </a>
+          </div>
         </div>
       </section>
 
@@ -175,12 +209,28 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
       <section>
         <h2 className="text-xl font-bold mb-4">Audio Samples</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {['/projects/tts-pipeline/sample-1.wav','/projects/tts-pipeline/sample-2.wav','/projects/tts-pipeline/sample-3.wav'].map((src, i) => (
-            <div key={src} className="p-4 rounded-xl border bg-white shadow-sm">
-              <div className="flex items-center gap-2 text-sm font-medium mb-2">▶ Sample {i+1}</div>
+          {[
+            {
+              src: '/projects/tts-pipeline/dia-sample1.mp3',
+              desc: 'Dia model — style-conditioned generation'
+            },
+            {
+              src: '/projects/tts-pipeline/11labs-sample2.mp3',
+              desc: 'ElevenLabs API — sound effect (Subway leaving station)'
+            },
+            {
+              src: '/projects/tts-pipeline/sample-3.wav',
+              desc: 'Meta Audiocraft - music generation'
+            }
+          ].map((item, i) => (
+            <div key={item.src} className="p-4 rounded-xl border bg-white shadow-sm">
+              <div className="flex items-center gap-2 text-sm font-medium mb-2">
+                ▶ Sample {i + 1}
+              </div>
               <audio controls className="w-full">
-                <source src={src} type="audio/wav" />
+                <source src={item.src} type="audio/wav" />
               </audio>
+              <p className="mt-2 text-xs text-slate-600">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -196,6 +246,14 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
         </div>
       </section>
 
+      {/* Pipeline Diagram */}
+      <section>
+        <h2 className="text-xl font-bold mb-4">Pipeline Diagram</h2>
+        <div className="rounded-2xl overflow-hidden shadow-lg border">
+          <iframe src="/diagrams/tts-pipeline.html" title="TTS Pipeline Diagram" className="w-full h-[520px]" loading="lazy" />
+        </div>
+      </section>
+
       {/* Supported Backends */}
       <section>
         <h2 className="text-xl font-bold mb-4">Supported Models</h2>
@@ -203,8 +261,8 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {[
             {name:'IndexTTS', desc:'cloning/style; ref text + ref audio'},
-            {name:'Chatterbox', desc:'dialogue synthesis; multi‑turn'},
-            {name:'Dia', desc:'style‑conditioned generation'},
+            {name:'Chatterbox', desc:'style‑conditioned generation'},
+            {name:'Dia', desc:'dialogue synthesis; multi‑turn'},
             {name:'CSM‑1B', desc:'compact model; faster batches'},
             {name:'Kokoro', desc:'lightweight; quick previews'},
           ].map(b => (
@@ -233,13 +291,6 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
         </div>
       </section>
 
-      {/* Pipeline Diagram */}
-      <section>
-        <h2 className="text-xl font-bold mb-4">Pipeline Diagram</h2>
-        <div className="rounded-2xl overflow-hidden shadow-lg border">
-          <iframe src="/diagrams/tts-pipeline.html" title="TTS Pipeline Diagram" className="w-full h-[520px]" loading="lazy" />
-        </div>
-      </section>
 
       {/* Technical highlights */}
       <section>
@@ -265,12 +316,9 @@ def run_batch(engine: TTSEngine, rows, out_dir: Path):
       <section id="files">
         <h2 className="text-xl font-bold mb-4">Files & Artifacts</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <FileCard title="Demo Dataset (ZIP)" href="/projects/tts-pipeline/demo-dataset.zip" />
-          <FileCard title="Run Log (CSV)" href="/projects/tts-pipeline/run_log.csv" />
-          <FileCard title="Summary Metrics (CSV)" href="/projects/tts-pipeline/summary_metrics.csv" />
-          <FileCard title="Error Report (CSV)" href="/projects/tts-pipeline/error_report.csv" />
-          <FileCard title="Config (YAML)" href="/projects/tts-pipeline/config.yaml" />
-          <FileCard title="Analysis Notebook (ipynb)" href="/projects/tts-pipeline/analysis.ipynb" />
+          <FileCard title="Demo Dataset (ZIP)" href="/projects/tts-pipeline/Sample-dataset.zip" />
+          <FileCard title="Generation Log (CSV)" href="/projects/tts-pipeline/generation_log.csv" />
+          <FileCard title="Sample Log (TXT)" href="/projects/tts-pipeline/sample-log.txt" />
         </div>
       </section>
 

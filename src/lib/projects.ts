@@ -51,6 +51,7 @@ export const projects: Project[] = [
     "Showcased ATS workflows to Siemens NX customers",
   ],
   year: "2021–2023",
+  //image: "/projects/nx-ats/preview.png", 
   },
   {
     slug: "cfd-auditorium",
