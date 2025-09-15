@@ -8,6 +8,7 @@ type Featured = {
   slug: string;
   summary: string;
   tags: string[];
+  imgSrc: string;
 };
 
 const featured: Featured[] = [
@@ -17,22 +18,55 @@ const featured: Featured[] = [
     summary:
       "Large-batch synthetic speech generation with GPU offloading, logs, and offline caches.",
     tags: ["Python", "PyTorch", "Torchaudio"],
+    imgSrc: "/projects/tts-pipeline/preview.jpg",
   },
   {
     title: "Siemens NX Automated Testing Studio",
     slug: "nx-ats",
-    summary:
-      "NX QA Automation Test Cases",
+    summary: "NX QA Automation Test Cases",
     tags: ["Python", "NXOpen", "QA Automation"],
+    imgSrc: "/projects/nx-ats/preview.jpg",
   },
-  {
-    title: "CFD Playground",
-    slug: "cfd",
-    summary:
-      "Numerical experiments and visualizations from applied math / fluid coursework.",
-    tags: ["C++", "Num Methods", "Viz"],
-  },
+  // {
+  //   title: "CFD Playground",
+  //   slug: "cfd",
+  //   summary:
+  //     "Numerical experiments and visualizations from applied math / fluid coursework.",
+  //   tags: ["C++", "Num Methods", "Viz"],
+  //   imgSrc: "/projects/cfd/preview.jpg",
+  // },
 ];
+
+function ProjectCard({ title, slug, summary, tags, imgSrc }: Featured) {
+  return (
+    <Link key={slug} href={`/projects/${slug}`} className="group">
+      <article className="h-full rounded-2xl border bg-background p-5 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-sm">
+        <div className="aspect-video w-full rounded-xl overflow-hidden mb-4">
+          <img
+            src={imgSrc}
+            alt={`${title} preview`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <h3 className="text-lg font-semibold group-hover:underline">{title}</h3>
+        <p className="mt-2 text-sm text-muted-foreground">{summary}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <span
+              key={t}
+              className="text-xs rounded-full border px-2 py-1 text-muted-foreground"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </article>
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
@@ -44,8 +78,10 @@ export default function Home() {
           Software Engineer · Machine Learning
         </p>
         <p className="mt-4 text-muted-foreground">
-          MSCS @ USC · ex-Siemens QA. I build polished SWE systems and ML
-          pipelines for audio and computer vision.
+            MSCS @ USC (Dec 2026)<br />
+            ex-Siemens Application Engineer/QA<br />
+            Experienced in automation and large-scale QA systems <br /> 
+            Building GPU-optimized ML pipelines for text-to-speech Generation<br /> 
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
@@ -79,42 +115,11 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/projects/${p.slug}`}
-              className="group"
-            >
-              <article className="h-full rounded-2xl border bg-background p-5 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-sm">
-                {/* image placeholder block (no asset needed) */}
-                <div className="aspect-video w-full rounded-xl bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 mb-4 grid place-items-center text-sm text-muted-foreground">
-                  preview
-                </div>
-
-                <h3 className="text-lg font-semibold group-hover:underline">
-                  {p.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.summary}</p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs rounded-full border px-2 py-1 text-muted-foreground"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            </Link>
+            <ProjectCard key={p.slug} {...p} />
           ))}
         </div>
       </section>
 
-      {/* Keep your original test button if you like */}
-      <div className="mt-12">
-        <Button className="h-10 px-5">Test shadcn Button</Button>
-      </div>
     </main>
   );
 }
