@@ -24,24 +24,6 @@ export const projects: Project[] = [
     year: "2025",
   },
   {
-    slug: "vqvae-speech",
-    title: "VQ-VAE Speech Compression / Representation",
-    tech: ["Python", "PyTorch", "Librosa"],
-    summary: "VQ-VAE from scratch; tuned codebook + commitment cost.",
-    highlights: [
-      "Mixed precision + grad accumulation on RTX 3090",
-      "35% faster epochs while keeping quality",
-    ],
-    year: "2025",
-  },
-  {
-    slug: "ml-core-from-scratch",
-    title: "Core ML Algorithms — From Scratch",
-    tech: ["Python", "NumPy","Pandas", "Matplotlib", "Scikit-learn", "Reinforcement Learning"],
-    summary: "Transformer, CNN, Hidden Markov-Model, K-means, Q-Learning, PCA, Decision Tree, Classification implementations.",
-    year: "2024–2025",
-  },
-  {
   slug: "nx-ats",
   title: "Siemens NX Automated Testing Studio (ATS)",
   tech: ["Python", "NX Open", "HTML", "QA Automation"],
@@ -54,8 +36,27 @@ export const projects: Project[] = [
   //image: "/projects/nx-ats/preview.png", 
   },
   {
+    slug: "vqvae-speech",
+    title: "(Under Construction) VQ-VAE Speech Compression / Representation",
+    tech: ["Python", "PyTorch", "Librosa"],
+    summary: "VQ-VAE from scratch; tuned codebook + commitment cost.",
+    highlights: [
+      "Mixed precision + grad accumulation on RTX 3090",
+      "35% faster epochs while keeping quality",
+    ],
+    year: "2025",
+  },
+  {
+    slug: "ml-core-from-scratch",
+    title: "(Under Construction) Core ML Algorithms — From Scratch",
+    tech: ["Python", "NumPy","Pandas", "Matplotlib", "Scikit-learn", "Reinforcement Learning"],
+    summary: "Transformer, CNN, Hidden Markov-Model, K-means, Q-Learning, PCA, Decision Tree, Classification implementations.",
+    year: "2024–2025",
+  },
+
+  {
     slug: "cfd-auditorium",
-    title: "CFD: Auditorium Airflow & Aerosol Simulation",
+    title: "(Under Construction) CFD: Auditorium Airflow & Aerosol Simulation",
     tech: ["MATLAB", "SpaceClaim", "Ansys Fluent"],
     summary: "Modeled UCSD auditorium airflow to aid COVID-safe planning.",
     year: "2021",
