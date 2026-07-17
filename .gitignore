@@ -1,41 +1,40 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# YY Portfolio — local setup and project map
+#
+# Run locally (this project uses pnpm):
+#   pnpm install
+#   pnpm dev
+# Then visit http://localhost:3000.
+#
+# Where things live:
+# - src/app/            Next.js routes, layouts, and page styles.
+# - src/app/projects/   Individual project pages and dynamic project routes.
+# - src/components/     Reusable site and UI components.
+# - src/lib/            Shared utilities and project data.
+# - public/             Static files served directly (images, media, resume).
+# - package.json        Scripts and dependency definitions.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Dependencies
+node_modules/
 
-# testing
-/coverage
+# Next.js build and development output
+.next/
+out/
 
-# next.js
-/.next/
-/out/
+# Local environment files (keep example files trackable)
+.env*
+!.env.example
 
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Logs and debug output
+*.log
+pnpm-debug.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
 
-# vercel
-.vercel
-
-# typescript
+# TypeScript build metadata
 *.tsbuildinfo
-next-env.d.ts
